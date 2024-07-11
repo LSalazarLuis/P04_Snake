@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements ActionListener {
     boolean running = false;
     Timer timer; // un objeto Timer genera eventos de accion a intervalos regulares
     Random random; // para crear un numero aleatorio
+    Button reiniciar;
 
     public GamePanel() {
 
@@ -32,6 +33,7 @@ public class GamePanel extends JPanel implements ActionListener {
         setFocusable(true);
         addKeyListener(new MyKeyAdapter());
         iniciarJuego();
+        configuracionBotonReinicio();
 
     }
 
@@ -183,6 +185,39 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setFont(new Font("Ink Free", Font.BOLD, 75));
         FontMetrics metrics2 = getFontMetrics(g.getFont());
         g.drawString("GAME OVER", (ANCHO_PANTALLA - metrics2.stringWidth("GAME OVER")) / 2, ALTURA_PANTALLA / 2);
+
+        //Boton de reiniciar
+        reiniciar.setVisible(true);
+        reiniciar.setBounds((ANCHO_PANTALLA - 200) / 2, (ALTURA_PANTALLA / 2) + 100, 200, 50);
+        
+    }
+
+    private void configuracionBotonReinicio(){
+
+        reiniciar = new Button("Reiniciar");
+        reiniciar.setFont(new Font("Ink Free",Font.BOLD,20));
+        reiniciar.setFocusable(false);
+        reiniciar.addActionListener(e->reiniciarJuego());
+        reiniciar.setVisible(false);
+        this.add(reiniciar);
+
+    }
+
+    public void reiniciarJuego(){
+
+        bodyParts = 6;
+        puntaje = 0;
+        direccion = 'R';
+        running = false;
+        timer.stop();
+
+        for (int i = 0; i < bodyParts; i++) {
+            x[i] = 0;
+            y[i] = 0;
+        }
+
+        reiniciar.setVisible(false);
+        iniciarJuego();
 
     }
 
