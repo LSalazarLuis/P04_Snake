@@ -1,4 +1,6 @@
 Clásico juego de la serpiente.
+
+
 ![image](https://github.com/LSalazarLuis/P04_Snake/assets/130400549/b352c4d7-63dc-489f-add1-6276535c59b1)
 
 
